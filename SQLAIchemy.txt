@@ -1,0 +1,73 @@
+Operaciones con SQLAlchemy
+En esta lección, realizamos todas nuestras operaciones CRUD con SQLAlchemy en una base de datos SQLite. Antes de realizar cualquier operación, primero debemos importar las bibliotecas necesarias, conectarnos a nuestro archivo restaurantMenu.db y crear una sesión para interactuar con la base de datos:
+
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from database_setup import Base, Restaurant, MenuItem
+
+engine = create_engine('sqlite:///restaurantMenu.db')
+Base.metadata.bind=engine
+DBSession = sessionmaker(bind = engine)
+session = DBSession()
+
+************************************************************************************************************************
+******* CREAR *******
+************************************************************************************************************************
+Creamos un nuevo restaurante y lo llamamos Pizza Palace:
+myFirstRestaurant = Restaurant(name = "Pizza Palace")
+session.add(myFirstRestaurant)
+session.commit()
+Creamos un elemento de menú de pizza de queso y lo agregamos al menú de Pizza Palace:
+cheesepizza = menuItem(name="Cheese Pizza", description = "Hecha con ingredientes totalmente naturales y mozzarella fresca", course="Entree", precio="$8.99", restaurante=myFirstRestaurant)
+session.add(cheesepizza)
+session.commit()
+LEER
+Leemos la información de nuestra base de datos usando el método query en SQLAlchemy:
+
+firstResult = session.query(Restaurant).first()
+firstResult.name
+
+items = session.query(MenuItem).all()
+for item in items:
+
+print item.name
+
+
+************************************************************************************************************************
+******* ACTUALIZAR *******
+************************************************************************************************************************
+Para actualizar una entrada existente en nuestra base de datos, debemos ejecutar los siguientes comandos:
+
+Buscar entrada
+Restablecer valor(es)
+Agregar a la sesión
+Ejecutar session.commit()
+Encontramos la hamburguesa vegetariana del restaurante Urban Burger ejecutando la siguiente consulta:
+veggieBurgers = session.query(MenuItem).filter_by(name= 'Veggie Burger')
+for veggieBurger in veggieBurgers:
+print veggieBurger.id
+print Precio de la hamburguesa vegetariana
+
+Imprimir Hamburguesa vegetariana.Nombre del restaurante
+
+Imprimir "\n"
+Luego actualizamos el precio de la hamburguesa vegetariana a $2.99:
+
+HamburguesaVegetarianaUrbana = sesión.consulta(ElementoMenú).filtrar_por(id=8).uno()
+HamburguesaVegetarianaUrbana.precio = '$2.99'
+sesión.agregar(HamburguesaVegetarianaUrbana)
+sesión.confirmar()
+
+************************************************************************************************************************
+******* ELIMINAR *******
+************************************************************************************************************************
+Para eliminar un elemento de nuestra base de datos, debemos seguir los siguientes pasos:
+
+Buscar la entrada
+Sesión.eliminar(Entrada)
+Sesión.confirmar()
+Eliminamos el helado de espinacas de nuestra base de datos de Elementos del Menú con las siguientes operaciones:
+
+espinacas = sesión.consulta(ElementoMenú).filtrar_por(nombre = 'Helado de Espinacas').uno()
+sesión.eliminar(espinacas)
+sesión.confirmar()
