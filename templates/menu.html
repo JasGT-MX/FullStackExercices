@@ -1,0 +1,36 @@
+
+<html>
+    <head>
+        <link rel=stylesheet type=text/css href="{{url_for('static', filename='styles.css')}}">
+    </head>
+<body>
+	<div class = 'pane'>
+		<div class = 'header'>
+            <h1>{{restaurant.name}}</h1>
+        </div>
+
+        <a href = '{{ url_for('newMenuItem', restID = restaurant.id) }}'>Agregar nuevo platillo</a>
+        
+
+        {% for i in items %}
+            <div class = 'nameAndPrice'>
+                <span class = 'name'><p>{{i.name}}</p></span>
+                <span class = 'price'><p>{{i.price}}</p></span>
+            </div>
+            <div class = 'description'>
+		        <p>{{i.description}}</p>
+	        </div>
+
+            <div class = "editdeletepane">
+                <a href="{{ url_for('editMenuItem', restID=restaurant.id, menuID=i.id) }}">
+                        <img src="{{ url_for('static', filename='img/edit.png') }}" alt="Editar" title="Editar platillo" width="24" height="24">
+                </a>
+                <a href="{{ url_for('deleteMenuItem', restID=restaurant.id, menuID=i.id) }}">
+                        <img src="{{ url_for('static', filename='img/delete.png') }}" alt="Eliminar" title="Eliminar platillo" width="24" height="24">
+                </a>
+            </div>
+        {% endfor %}
+    </div>        
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+<html>
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<h1> Agregar nuevo platillo </h1>
+<div class = 'pane'>
+    <form action="{{url_for('newMenuItem', restID=restaurant_id )}}" method = 'POST'>
+        <dl>
+            <dt><p>Platillo:</p></dt>
+            <dd><input type='text' size='30' name='txtName' placeholder="Nombre del platillo"></dd>
+        </dl>
+        <input type='submit' value='Agregar'>
+    </form>
+</div>
+</body>
+</html>
