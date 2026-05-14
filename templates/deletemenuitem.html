@@ -1,17 +1,17 @@
 <html>
-<head>
-	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-<h1> ¿Esta seguro de eliminar el platillo: {{item.name}}? </h1>
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesfinal.css') }}">
+	</head>
 
-<form action="{{ url_for('deleteMenuItem', restID=item.restaurant_id, menuID=item.id)}}" method = 'post'>
+	<body>
+		<div class = 'deletepane'>
+			<h1> Are you sure you want to delete {{item.name}}? </h1>
 
-<input type='submit', value = 'Delete'>
-
-</form>
-
-<a href = "{{ url_for('restaurantMenu', restID = item.restaurant_id)}}"> Cancelar </a>
-</body>
+			<form action="{{ url_for('deleteMenuItem', restID=restID, menuID=item.id) }}" method = 'post' class="deleditform">
+				<input type='submit', value = 'Delete'>
+				<a href = '{{url_for('showMenuItems', restID = restID)}}' class="button-link"> Cancel </a>
+			</form>
+		</div>
+	</body>
 
 </html>

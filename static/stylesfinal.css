@@ -1,0 +1,100 @@
+body            { font-family: sans-serif; 
+                  background-color: #333333; 
+                  background-image: url('https://cloud.githubusercontent.com/assets/9041401/6119508/7cbced14-b07e-11e4-9dbd-f01488203879.jpg')}
+ h1, h2, h3, h4       { color: #CCCCCC; }
+h1, h2          { font-family: 'Georgia', serif; margin: 0; }
+h1              { border-bottom: 2px solid #eee;  }
+h2              { font-size: 1.2em; }
+
+p               { color: #CCCCCC;}
+
+a {text-decoration: none; 
+    color:#FFFFCC; 
+    font-size: .75em;}
+
+.pane {position:absolute; 
+        left: 25%; 
+        border: 2px solid;
+        border-radius: 25px; 
+        padding: 5px; 
+        margin: 5px; 
+        border-color: #999999; 
+        background-color: #333333; }
+.divRestarunts {display: flex; 
+                justify-content: space-between; 
+                align-items: center; 
+                width: 97%; 
+                padding: 10px 0px 7px 0px;}
+.header         {left:50%; 
+                 text-align: center;}
+.name {width:70%;
+        display: inline-block; 
+        float: left; 
+        font-weight: 400; 
+        font-family: sans-serif; 
+        font-size: medium; 
+        color: #ccc; 
+        margin: 7px 0px 7px 10px;}
+.description {}
+.price {text-align: right; 
+        width:25%; 
+        float: right; 
+        color: #ccc; 
+        margin: 7px 7px 7px 0px;}
+.deleditform {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+.deletepane{
+        position:absolute; 
+        left: 25%; 
+        border: 2px solid;
+        border-radius: 25px; 
+        padding: 5px; 
+        margin: 5px; 
+        border-color: firebrick; 
+        background-color: rgb(180, 93, 93);
+}
+
+.flash          { background: #cee5F5; }
+img {margin-left: 10px; 
+    vertical-align: middle; 
+    width: 24px; 
+    height: 24px; 
+    float: right;}
+
+/* Input utilizado como OK */
+input[type="submit"] {
+  background-color: #fff; /* Button color */
+  color: #DC3545;              /* Text color */
+  padding: 10px 20px;        /* Size */
+  border: 3px solid #fff;              /* Remove default border */
+  border-radius: 5px;        /* Rounded corners */
+  cursor: pointer;           /* Pointer on hover */
+  font-size: 16px;
+}
+
+input[type="submit"]:hover {
+  background-color: silver; /* Darker color on hover */
+  border: 2px solid gray;
+}
+/* HRef visualizado como boton y utilizado como cancel */
+a.button-link {
+  display: inline-block;     /* Permite aplicar padding y márgenes */
+  background-color: transparent; /* Color del botón */
+  color: white;              /* Color del texto */
+  padding: 10px 20px;        /* Tamaño del botón */
+  border-radius: 5px;        /* Bordes redondeados */
+  text-decoration: none;     /* Quita el subrayado del enlace */
+  font-size: 16px;
+  font-family: sans-serif;
+  text-align: center;
+   border: 3px solid whitesmoke; 
+}
+
+a.button-link:hover {
+  background-color: firebrick; /* Color más oscuro al pasar el cursor */
+}

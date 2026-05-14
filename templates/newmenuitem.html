@@ -1,17 +1,26 @@
 <html>
-<head>
-	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-<h1> Agregar nuevo platillo </h1>
-<div class = 'pane'>
-    <form action="{{url_for('newMenuItem', restID=restaurant_id )}}" method = 'POST'>
-        <dl>
-            <dt><p>Platillo:</p></dt>
-            <dd><input type='text' size='30' name='txtName' placeholder="Nombre del platillo"></dd>
-        </dl>
-        <input type='submit' value='Agregar'>
-    </form>
-</div>
-</body>
+
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesfinal.css') }}">
+	</head>
+	<body>
+		<h1>New Menu Item</h1>
+
+		<form action="{{ url_for('newMenuItem', restID=restID) }}" method = 'post'>
+			<p>Name:</p>
+				<input type ='text' size='30' name='txtName'>
+			<p>Description:</p>
+				<input type ='text' size='30' name='txtDesc'>
+			<p>Price:</p>
+				<input type ='text' size='30' name='txtCost'>
+			<p>Course:</p>
+				<input type ='radio'  name='optCourse' value ='Appetizer'>Appetizer</br>
+				<input type ='radio'  name='optCourse' value ='Entree'>Entree</br>
+				<input type ='radio' name='optCourse' value ='Dessert'>Dessert</br>
+				<input type ='radio'  name='optCourse' value ='Beverage'>Beverage</br>
+			</br>
+			<input type='submit' value='Create'>
+			<a href = '{{url_for('showMenuItems', restID = restID)}}'> Cancel </a>
+		</form>
+	</body>
 </html>

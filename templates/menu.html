@@ -1,36 +1,101 @@
-
 <html>
-    <head>
-        <link rel=stylesheet type=text/css href="{{url_for('static', filename='styles.css')}}">
-    </head>
-<body>
-	<div class = 'pane'>
-		<div class = 'header'>
-            <h1>{{restaurant.name}}</h1>
-        </div>
+	
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesfinal.css') }}">
+	</head>
+	<body>
+		<div class = 'pane'>
+			<div class='divRestarunts'>
+				<h1>{{ restaurant.name }}</h1>
+				<a href = "{{url_for('newMenuItem', restID = restID )}}" style="float: inline-end;"><img src="{{ url_for('static', filename='img/add.png') }}" alt="New Item" title="Create New Item"></a>
+				<a href="{{url_for('showRestaurants')}}" style="float: inline-end;"><img src="{{ url_for('static', filename='img/undo.png') }}" alt="Back" title="Back to Restaurants"></a>
+			</div>
+			
+			
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}  
+					<ul>
+						{% for message in messages %}
+							<li> <strong> {{ message }} </strong> </li>
+						{% endfor %}
+					</ul>
+				{% endif %}
+			{% endwith %}
 
-        <a href = '{{ url_for('newMenuItem', restID = restaurant.id) }}'>Agregar nuevo platillo</a>
-        
+			{% if items !=[] %}
+				
+				</br></br>
 
-        {% for i in items %}
-            <div class = 'nameAndPrice'>
-                <span class = 'name'><p>{{i.name}}</p></span>
-                <span class = 'price'><p>{{i.price}}</p></span>
-            </div>
-            <div class = 'description'>
-		        <p>{{i.description}}</p>
-	        </div>
+				<h2>Appetizers</h2>
+				{% for i in items %}
+					{% if i.course == 'Appetizer' %}
+						<div class="name">{{i.name}}</div> 
+						<div class="price">{{i.price}}</div>
+						<p>{{i.description}}</p>
+						
+						<div>
+							<a href='{{url_for('deleteMenuItem', restID = restID, menuID=i.id ) }}' ><img src="{{ url_for('static', filename='img/delete.png') }}" alt="Delete" title="Delete restaurant"></a>
+							<a href='{{url_for('editMenuItem', restID = restID, menuID=i.id ) }}' ><img src="{{ url_for('static', filename='img/edit.png') }}" alt="Edit" title="Edit restaurant"></a>
+						</div>
 
-            <div class = "editdeletepane">
-                <a href="{{ url_for('editMenuItem', restID=restaurant.id, menuID=i.id) }}">
-                        <img src="{{ url_for('static', filename='img/edit.png') }}" alt="Editar" title="Editar platillo" width="24" height="24">
-                </a>
-                <a href="{{ url_for('deleteMenuItem', restID=restaurant.id, menuID=i.id) }}">
-                        <img src="{{ url_for('static', filename='img/delete.png') }}" alt="Eliminar" title="Eliminar platillo" width="24" height="24">
-                </a>
-            </div>
-        {% endfor %}
-    </div>        
-</body>
+						</br></br>
+					{% endif %}
+				{% endfor %}
+				</br></br>
 
+				<h2>Entrees</h2>
+				{% for i in items %}
+					{% if i.course == 'Entree' %}
+						<div class="name">{{i.name}}</div>
+						<div class="price">{{i.price}}</div>
+						<p>{{i.description}}</p>
+
+						<div>
+							<a href='{{url_for('deleteMenuItem', restID = restID, menuID=i.id ) }}' ><img src="{{ url_for('static', filename='img/delete.png') }}" alt="Delete" title="Delete restaurant"></a>
+							<a href='{{url_for('editMenuItem', restID = restID, menuID=i.id ) }}' ><img src="{{ url_for('static', filename='img/edit.png') }}" alt="Edit" title="Edit restaurant"></a>
+						</div>
+
+						</br></br>
+					{% endif %}
+				{% endfor %}
+				</br></br>
+
+				<h2>Desserts</h2>
+				{% for i in items %}
+					{% if i.course == 'Dessert' %}
+						<div class="name">{{i.name}}</div>
+						<div class="price">{{i.price}}</div>
+						<p>{{i.description}}</p>
+
+						<div>
+							<a href='{{url_for('deleteMenuItem', restID = restID, menuID=i.id ) }}' ><img src="{{ url_for('static', filename='img/delete.png') }}" alt="Delete" title="Delete restaurant"></a>
+							<a href='{{url_for('editMenuItem', restID = restID, menuID=i.id ) }}' ><img src="{{ url_for('static', filename='img/edit.png') }}" alt="Edit" title="Edit restaurant"></a>
+						</div>
+						
+						</br></br>
+					{% endif %}
+				{% endfor %}
+				</br></br>
+
+				<h2>Beverages</h2>
+				{% for i in items %}
+					{% if i.course == 'Beverage' %}
+						<div class="name">{{i.name}}</div>
+						<div class="price">{{i.price}}</div>
+						<p>{{i.description}}</p>
+
+						<div>
+							<a href='{{url_for('deleteMenuItem', restID = restID, menuID=i.id ) }}' ><img src="{{ url_for('static', filename='img/delete.png') }}" alt="Delete" title="Delete restaurant"></a>
+							<a href='{{url_for('editMenuItem', restID = restID, menuID=i.id ) }}' ><img src="{{ url_for('static', filename='img/edit.png') }}" alt="Edit" title="Edit restaurant"></a>
+						</div>
+						
+						</br></br>
+					{% endif %}
+				{% endfor %}
+			{% else %}
+				<p> You currently have no menu items. <p>
+				<a href = "{{url_for('newMenuItem', restID = restID )}}">Create New Item</a>
+			{% endif %}
+		</div>
+	</body>
 </html>
